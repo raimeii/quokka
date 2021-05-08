@@ -77,6 +77,11 @@ class QuokkaMaze:
         :param v - The vertex to add to the graph.
         :return true if the vertex was correctly added, else false
         """
+        for vx in self.vertices:
+            if v == vx:
+                return False
+        self.vertices.append(v)
+        return True
         # TODO implement me, please?
         pass
 
@@ -89,6 +94,29 @@ class QuokkaMaze:
         :param v - Another vertex
         :return true if the edge was successfully fixed, else false.
         """
+        flag_0 = False
+        flag_1 = False
+
+        for v1 in u.edges:
+            if v1 == v:
+                flag_0 = True
+        
+        for v2 in v.edges:
+            if v2 == u:
+                flag_1 = True
+
+        if flag_0 and flag_1:
+            return False
+        else:
+            u.add_edge(v)
+            return True
+        
+        if u not in v.edges:
+            if v not in u.edges:
+                u.add_edge(e)
+                return True
+            else:
+                return False
 
         # TODO implement me please.
         pass
@@ -103,9 +131,18 @@ class QuokkaMaze:
         :param v - Another vertex.
         :return true if the edge was successfully removed, else false.
         """
+        
+        if u in v.edges:
+            if v in u.edges:
+                u.rm_edge(v)
+                return True
+            else:
+                return False
 
         # TODO implement me, please!
         pass
+
+
 
     def find_path(
             self,
@@ -143,8 +180,26 @@ class QuokkaMaze:
 
         """
 
+        food = k
+        visited = []
+
+        while k > 0:
+            for child in x:
+                if child not in visited:
+                    visit(child, visited, food)
+
+
         # TODO implement me please
         pass
+
+    def visit(s: Vertex, ls: List, food: int):
+        ls.append(s)
+        if food > 0:
+            for vert in s.edges:
+                if vert.has_food:
+                    food += 1 
+                food -= 1
+                visit(vert)
 
     def exists_path_with_extra_food(
         self,

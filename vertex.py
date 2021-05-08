@@ -39,6 +39,10 @@ class Vertex:
         :param v - The vertex to add an edge between.
         """
         # TODO implement me please!
+        if self not in v.edges:
+            if v not in self.edges:
+                self.edges.append(v)
+                v.edges.append(self)
         pass
 
     def rm_edge(self, v: 'Vertex') -> None:
@@ -48,4 +52,8 @@ class Vertex:
         :param v - The vertex to remove from edges.
         """
         # TODO implement me please!
+        if v in self.edges:
+            if self in v.edges:
+                self.edges.remove(v)
+                v.edges.remove(self)
         pass
