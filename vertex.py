@@ -59,7 +59,7 @@ class Vertex:
             return
         
         else:
-            if v in self.edges and self in v.edges:
+            if v in self.edges:
                 self.edges.remove(v)
             else:
                 return
