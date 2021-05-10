@@ -100,13 +100,16 @@ class QuokkaMaze:
         """
         if u is v or u is None or v is None:
             return False
+
+        if u not in self.vertices or v not in self.vertices:
+            return False
+
+        if u in v.edges and v in u.edges:
+            return False
         else:
-            if u in v.edges and v in u.edges:
-                return False
-            else:
-                u.add_edge(v)
-                v.add_edge(u)
-                return True
+            u.add_edge(v)
+            v.add_edge(u)
+            return True
 
         # TODO implement me please.
         pass
@@ -123,13 +126,16 @@ class QuokkaMaze:
         """
         if u is v or u is None or v is None:
             return False
+
+        if u not in self.vertices or v not in self.vertices:
+            return False
+
+        if u in v.edges and v in u.edges:
+            u.rm_edge(v)
+            v.rm_edge(u)
+            return True
         else:
-            if u in v.edges and v in u.edges:
-                u.rm_edge(v)
-                v.rm_edge(u)
-                return True
-            else:
-                return False
+            return False
 
 
         # TODO implement me, please!

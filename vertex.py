@@ -40,7 +40,6 @@ class Vertex:
         """
         if v is None or v is self:
             return
-        
         else:
             if v not in self.edges:
                 self.edges.append(v)
