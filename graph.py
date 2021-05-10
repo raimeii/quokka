@@ -77,17 +77,16 @@ class QuokkaMaze:
         :param v - The vertex to add to the graph.
         :return true if the vertex was correctly added, else false
         """
-        if v == None:
+        if v is None:
             return False
-        if v ==  self:
-            return False
-
-        for vx in self.vertices:
-            if v == vx:
+        
+        else:
+            if v not in self.vertices:
+                self.vertices.append(v)
+                return True
+            else:
                 return False
-        self.vertices.append(v)
-        return True
-        # TODO implement me, please?
+
         pass
 
     def fix_edge(self, u: Vertex, v: Vertex) -> bool:
@@ -99,34 +98,15 @@ class QuokkaMaze:
         :param v - Another vertex
         :return true if the edge was successfully fixed, else false.
         """
-        if u is None or v is None:
-            return False
-        if u is v:
-            return False
-            
-        flag_0 = False
-        flag_1 = False
-
-        for v1 in u.edges:
-            if v1 == v:
-                flag_0 = True
-        
-        for v2 in v.edges:
-            if v2 == u:
-                flag_1 = True
-
-        if flag_0 and flag_1:
+        if u is v or u is None or v is None:
             return False
         else:
-            u.add_edge(v)
-            return True
-        
-        if u not in v.edges:
-            if v not in u.edges:
-                u.add_edge(e)
-                return True
-            else:
+            if u in v.edges and v in u.edges:
                 return False
+            else:
+                u.add_edge(v)
+                v.add_edge(u)
+                return True
 
         # TODO implement me please.
         pass
@@ -141,17 +121,16 @@ class QuokkaMaze:
         :param v - Another vertex.
         :return true if the edge was successfully removed, else false.
         """
-        if u == None or v == None:
+        if u is v or u is None or v is None:
             return False
-        if u == v:
-            return False
-        
-        if u in v.edges:
-            if v in u.edges:
+        else:
+            if u in v.edges and v in u.edges:
                 u.rm_edge(v)
+                v.rm_edge(u)
                 return True
             else:
                 return False
+
 
         # TODO implement me, please!
         pass
