@@ -178,6 +178,12 @@ class QuokkaMaze:
             3/ find_path(s=A, t=C, k=4) -> returns: [A, B, C]
 
         """
+        if s is t or s is None or t is None:
+            return
+
+        if s not in self.vertices or t not in self.vertices:
+            return
+
 
         food = k
         visited = []
@@ -237,6 +243,11 @@ class QuokkaMaze:
                 (Yes, if we put food on `B`, `C`, `D` then we reach E!)
 
         """
+        if s is t or s is None or t is None:
+            return
+
+        if s not in self.vertices or t not in self.vertices:
+            return
 
         # TODO implement me please
         pass
