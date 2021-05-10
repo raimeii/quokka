@@ -40,7 +40,7 @@ class Vertex:
         """
         if v == None:
             return
-        if v ==  self:
+        if v is self:
             return
         # TODO implement me please!
         if self not in v.edges:
@@ -57,7 +57,7 @@ class Vertex:
         """
         if v == None:
             return
-        if v ==  self:
+        if v is self:
             return
 
         # TODO implement me please!
