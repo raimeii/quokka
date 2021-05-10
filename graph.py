@@ -77,9 +77,9 @@ class QuokkaMaze:
         :param v - The vertex to add to the graph.
         :return true if the vertex was correctly added, else false
         """
-        if v is None:
+        if v == None:
             return False
-        if v is self:
+        if v ==  self:
             return False
 
         for vx in self.vertices:
@@ -103,23 +103,6 @@ class QuokkaMaze:
             return False
         if u is v:
             return False
-        flag_0 = False
-        flag_1 = False
-
-        for v1 in u.edges:
-            if v1 is v:
-                flag_0 = True
-        
-        for v2 in v.edges:
-            if v2 is u:
-                flag_1 = True
-
-        if flag_0 or flag_1:
-            return False
-
-        else:
-            u.add_edge(v)
-            return True
         
         if u not in v.edges:
             if v not in u.edges:
@@ -141,9 +124,9 @@ class QuokkaMaze:
         :param v - Another vertex.
         :return true if the edge was successfully removed, else false.
         """
-        if u is None or v is None:
+        if u == None or v == None:
             return False
-        if u is v:
+        if u == v:
             return False
         
         if u in v.edges:

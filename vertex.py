@@ -38,7 +38,7 @@ class Vertex:
 
         :param v - The vertex to add an edge between.
         """
-        if v == None:
+        if v is None:
             return
         if v is self:
             return
