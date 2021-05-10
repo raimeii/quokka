@@ -42,7 +42,7 @@ class Vertex:
             return
         
         else:
-            if v not in self.edges and self not in v.edges:
+            if v not in self.edges:
                 self.edges.append(v)
             else:
                 return
@@ -63,5 +63,4 @@ class Vertex:
                 self.edges.remove(v)
             else:
                 return
-        
         pass
