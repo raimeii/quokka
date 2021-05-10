@@ -103,6 +103,23 @@ class QuokkaMaze:
             return False
         if u is v:
             return False
+            
+        flag_0 = False
+        flag_1 = False
+
+        for v1 in u.edges:
+            if v1 == v:
+                flag_0 = True
+        
+        for v2 in v.edges:
+            if v2 == u:
+                flag_1 = True
+
+        if flag_0 and flag_1:
+            return False
+        else:
+            u.add_edge(v)
+            return True
         
         if u not in v.edges:
             if v not in u.edges:
