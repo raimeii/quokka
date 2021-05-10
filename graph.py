@@ -244,10 +244,10 @@ class QuokkaMaze:
 
         """
         if s is t or s is None or t is None:
-            return
+            return False
 
         if s not in self.vertices or t not in self.vertices:
-            return
+            return False
 
         # TODO implement me please
         pass
