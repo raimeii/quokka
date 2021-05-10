@@ -46,7 +46,6 @@ class Vertex:
         if self not in v.edges:
             if v not in self.edges:
                 self.edges.append(v)
-                v.edges.append(self)
         pass
 
     def rm_edge(self, v: 'Vertex') -> None:
@@ -64,5 +63,4 @@ class Vertex:
         if v in self.edges:
             if self in v.edges:
                 self.edges.remove(v)
-                v.edges.remove(self)
         pass
