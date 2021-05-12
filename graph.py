@@ -68,6 +68,7 @@ class QuokkaMaze:
         Initialises an empty graph with a list of empty vertices.
         """
         self.vertices = []
+        self.paths = []
 
     def add_vertex(self, v: Vertex) -> bool:
         """
@@ -141,8 +142,6 @@ class QuokkaMaze:
         # TODO implement me, please!
         pass
 
-
-
     def find_path(
             self,
             s: Vertex,
@@ -184,27 +183,48 @@ class QuokkaMaze:
         if s not in self.vertices or t not in self.vertices:
             return
 
+        path = []
+        path.append(s)
+        self.visit(path, s, t)
+        
+        for x in self.paths:
+            if self.valid_path(x, k):
+                return x
+        return None
 
-        food = k
-        visited = []
-
-        while k > 0:
-            for child in x:
-                if child not in visited:
-                    visit(child, visited, food)
 
 
         # TODO implement me please
-        pass
 
-    def visit(s: Vertex, ls: List, food: int):
-        ls.append(s)
-        if food > 0:
-            for vert in s.edges:
-                if vert.has_food:
-                    food += 1 
+    def visit(self, path: List[Vertex], cur: Vertex, end: Vertex) -> None:
+        cur.visited = True
+        if cur is end:
+            new_p = []
+            for x in path:
+                new_p.append(x)
+            self.paths.append(new_p)
+            cur.visited = False
+            return
+        for x in cur.edges:
+            if x.visited is False:
+                path.append(x)
+                self.visit(path, x, end)
+                path.remove(x)
+        cur.visited = False
+
+    def valid_path(self, vl: List[Vertex], k: int) -> bool:
+        food = k
+        for vertex in vl:
+            if food > 0:
                 food -= 1
-                visit(vert)
+                if vertex.has_food:
+                    food = k
+            else:
+                return False
+        
+        return True
+        
+
 
     def exists_path_with_extra_food(
         self,

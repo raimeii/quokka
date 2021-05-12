@@ -31,6 +31,7 @@ class Vertex:
 
         self.has_food = has_food
         self.edges = []
+        self.visited = False
 
     def add_edge(self, v: 'Vertex') -> None:
         """
