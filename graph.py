@@ -186,11 +186,19 @@ class QuokkaMaze:
         path = []
         path.append(s)
         self.visit(path, s, t)
+
+        #clear all vertices for further searches
+        for x in self.vertices:
+            x.visited = False
+
         for x in self.paths:
             if self.valid_path(x, s, k) == True:
-                print("booba")
-                print(x)
-                return x
+                ret = []
+                for s in x:
+                    ret.append(s)
+                #clear paths list
+                self.paths.clear()
+                return ret
         return
 
 
@@ -204,7 +212,6 @@ class QuokkaMaze:
             for x in path:
                 new_p.append(x)
             self.paths.append(new_p)
-            cur.visited = False
             return
         for x in cur.edges:
             if x.visited is False:
