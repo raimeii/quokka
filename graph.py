@@ -187,7 +187,8 @@ class QuokkaMaze:
         path.append(s)
         self.visit(path, s, t)
         for x in self.paths:
-            if self.valid_path(x, k) == True:
+            if self.valid_path(x, s, k) == True:
+                print("booba")
                 print(x)
                 return x
         return
@@ -203,6 +204,7 @@ class QuokkaMaze:
             for x in path:
                 new_p.append(x)
             self.paths.append(new_p)
+            cur.visited = False
             return
         for x in cur.edges:
             if x.visited is False:
@@ -211,9 +213,11 @@ class QuokkaMaze:
                 path.remove(x)
         cur.visited = False
 
-    def valid_path(self, vl: List[Vertex], k: int) -> bool:
+    def valid_path(self, vl: List[Vertex], start: Vertex, k: int) -> bool:
         food = k
         for vertex in vl:
+            if vertex is start:
+                continue
             if food > 0:
                 food -= 1
                 if vertex.has_food:
