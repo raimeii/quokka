@@ -199,6 +199,8 @@ class QuokkaMaze:
                 #clear paths list
                 self.paths.clear()
                 return ret
+
+        self.paths.clear()
         return
 
 
@@ -278,6 +280,10 @@ class QuokkaMaze:
 
         if s not in self.vertices or t not in self.vertices:
             return False
+
+        path = []
+        path.append(s)
+        self.visit(path, s, t)
 
         # TODO implement me please
         pass
