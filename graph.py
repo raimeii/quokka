@@ -200,6 +200,7 @@ class QuokkaMaze:
                 self.paths.clear()
                 return ret
 
+        #clear paths list
         self.paths.clear()
         return
 
@@ -214,6 +215,7 @@ class QuokkaMaze:
             for x in path:
                 new_p.append(x)
             self.paths.append(new_p)
+            cur.visited = False
             return
         for x in cur.edges:
             if x.visited is False:
@@ -285,5 +287,33 @@ class QuokkaMaze:
         path.append(s)
         self.visit(path, s, t)
 
+
+        for p in self.paths:
+            if self.valid_path_place_food(p, s, k, x) == True:
+                return True
+
+        #clear paths list
+        self.paths.clear()
+        return False
         # TODO implement me please
         pass
+
+    def valid_path_place_food(self, vl: List[Vertex], start: Vertex, k: int, x: int) -> bool:
+        food = k
+        stock = x
+        for vertex in vl:
+            if vertex is start:
+                continue
+            if food > 0:
+                food -= 1
+                if vertex.has_food:
+                    food = k
+            if food == 0:
+                if stock > 0:
+                    stock -= 1
+                    food = k
+                    food -= 1
+                else:
+                    return False
+        
+        return True
