@@ -288,7 +288,7 @@ class QuokkaMaze:
         self.visit(path, s, t)
 
         for p in self.paths:
-            if self.valid_path_place_food(p, s, k, x) == True:
+            if self.valid_path_place_food(p, s, t, k, x) == True:
                 return True
 
         #clear paths list
@@ -298,24 +298,20 @@ class QuokkaMaze:
         # TODO implement me please
         pass
 
-    def valid_path_place_food(self, vl: List[Vertex], start: Vertex, k: int, x: int) -> bool:
-        food = k
+    def valid_path_place_food(self, vl: List[Vertex], start: Vertex, end: Vertex, k: int, x: int) -> bool:
         stock = x
+        food = k
         for vertex in vl:
             if vertex is start:
                 continue
+            if food == 0 and stock > 0:
+                food = k
+                stock -= 1
             if food > 0:
-                print("Default")
                 food -= 1
                 if vertex.has_food:
                     food = k
-            if food == 0:
-                if stock > 0:
-                    print("Restocking")
-                    stock -= 1
-                    food = k
-                    food -= 1
-                if stock == 0 and food == 0:
-                    print("Out of stock")
-                    return False
+            else:
+                return False           
         return True
+            
