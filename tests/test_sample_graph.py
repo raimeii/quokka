@@ -260,7 +260,7 @@ class TestSampleGraph(unittest.TestCase):
 
         A = Vertex(False)
         B = Vertex(False)
-        C = Vertex(True)
+        C = Vertex(False)
         D = Vertex(False)
         E = Vertex(True)
 

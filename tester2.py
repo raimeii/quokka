@@ -4,7 +4,7 @@ from graph import QuokkaMaze
 
 A = Vertex(False)
 B = Vertex(False)
-C = Vertex(True)
+C = Vertex(False)
 D = Vertex(False)
 E = Vertex(True)
 
@@ -21,6 +21,6 @@ m.fix_edge(B, C)
 m.fix_edge(C, D)
 m.fix_edge(D, E)
 
-print(m.exists_path_with_extra_food(A, E, 2, 0))
+#                     *
+# A -- B -- C -- D -- E
 print(m.exists_path_with_extra_food(A, E, 2, 1))
-print(m.exists_path_with_extra_food(A, E, 1, 6))
