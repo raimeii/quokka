@@ -186,11 +186,11 @@ class QuokkaMaze:
         path = []
         path.append(s)
         self.visit(path, s, t)
-        
         for x in self.paths:
-            if self.valid_path(x, k):
+            if self.valid_path(x, k) == True:
+                print(x)
                 return x
-        return None
+        return
 
 
 
@@ -203,7 +203,6 @@ class QuokkaMaze:
             for x in path:
                 new_p.append(x)
             self.paths.append(new_p)
-            cur.visited = False
             return
         for x in cur.edges:
             if x.visited is False:
