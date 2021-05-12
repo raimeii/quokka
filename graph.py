@@ -299,19 +299,20 @@ class QuokkaMaze:
         pass
 
     def valid_path_place_food(self, vl: List[Vertex], start: Vertex, end: Vertex, k: int, x: int) -> bool:
-        stock = x
         food = k
+        stock = x
         for vertex in vl:
             if vertex is start:
                 continue
-            if food == 0 and stock > 0:
-                food = k
-                stock -= 1
             if food > 0:
                 food -= 1
                 if vertex.has_food:
                     food = k
-            else:
-                return False           
+            if food == 0:
+                if stock > 0:
+                    stock -= 1
+                    food = k
+                else:
+                    return False
         return True
             
